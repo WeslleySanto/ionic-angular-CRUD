@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, Data) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -11,50 +11,25 @@ angular.module('starter.controllers', [])
 
   $scope.home = 'Home';
   $scope.perfil = 'Perfil';
+  $scope.usuarios = 'Usuários';
   $scope.sair = 'Sair';
 
-  // Form data for the login modal
-  $scope.loginData = {};
+  $scope.usuarios_lista = [];
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+  var getData = function(){
+     var params = {
+        counter: $scope.usuarios_lista.length,
+        token: '1f3d2gs3f2fg3as2fdg3re2t1we46er45'
+     };
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
+     Data.getData(params).success(function(data){
+        $scope.usuarios_lista = data;
+     }).error(function(data){
+        console.log(data ? data : 'Não foi possível acessar o servidor');
+     });
+
   };
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
+  getData();
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
 });
