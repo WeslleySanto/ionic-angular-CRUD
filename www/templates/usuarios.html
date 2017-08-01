@@ -5,9 +5,9 @@
     </div>
 
     <ion-list ng-repeat="usuario in usuarios_lista">
-    	<ion-item>
+    	<ion-item ng-click="perfilUsuario(usuario.id)">
     		<h1 class="positive">{{usuario.nome}}</h1>
-    		<p>{{usuario.email}}</h1>
+    		<p>{{usuario.email}}</p>
     	</ion-item>
     </ion-list>
 

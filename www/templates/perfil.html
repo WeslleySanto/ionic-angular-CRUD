@@ -1,5 +1,8 @@
 <ion-view view-title="{{perfil}}">
   <ion-content>
-    <h1>{{perfil}}</h1>
+    <div ng-repeat="usuario in usuarioPerfil">
+    	<p>{{usuario.nome}}</p>
+    	<p>{{usuario.senha}}</p>
+    </div>
   </ion-content>
 </ion-view>

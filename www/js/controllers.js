@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, Data, $ionicModal) {
+.controller('AppCtrl', function($scope, Data, $ionicModal, $location) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -30,34 +30,42 @@ angular.module('starter.controllers', [])
 
 };
 
-  $ionicModal.fromTemplateUrl('templates/cadastro.html',{
-    scope:$scope,
-    animation: 'slide-in-up'
-  }).then(function(modal){
-    $scope.modal = modal;
+$ionicModal.fromTemplateUrl('templates/cadastro.html',{
+  scope:$scope,
+  animation: 'slide-in-up'
+}).then(function(modal){
+  $scope.modal = modal;
+});
+
+$scope.abreCadastro = function(){
+  $scope.modal.show();
+};
+
+var fecharCadastro = $scope.fechaCadastro = function(){
+  $scope.modal.hide();
+};
+
+getData();
+
+$scope.cadastroUsuario = function(usuario){
+  Data.setData(usuario)
+  .success(function(data){
+    alert(data);
+    fecharCadastro();
+    getData();
+  }).error(function(data){
+    alert(data)
   });
 
-  $scope.abreCadastro = function(){
-    $scope.modal.show();
-  };
+  console.log(usuario);
+};
 
-  var fecharCadastro = $scope.fechaCadastro = function(){
-    $scope.modal.hide();
-  };
+$scope.perfilUsuario = function(id){
+  $scope.usuarioPerfil = $scope.usuarios_lista.filter(function(e){
+    return e.id == id;
+  });
 
-  getData();
-
-  $scope.cadastroUsuario = function(usuario){
-    Data.setData(usuario)
-    .success(function(data){
-        alert(data);
-        fecharCadastro();
-        getData();
-    }).error(function(data){
-        alert(data)
-    });
-
-    console.log(usuario);
-  };
+  $location.path('app/perfil');
+};
 
 });
