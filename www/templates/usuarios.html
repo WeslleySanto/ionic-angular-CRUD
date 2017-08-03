@@ -4,10 +4,11 @@
     	<button class="button button-icon icon button-clear ion-android-person-add button-light  "></button>
     </div>
 
-    <ion-list ng-repeat="usuario in usuarios_lista">
+    <ion-list can-swipe="myswipe" ng-repeat="usuario in usuarios_lista">
     	<ion-item ng-click="perfilUsuario(usuario.id)">
     		<h1 class="positive">{{usuario.nome}}</h1>
     		<p>{{usuario.email}}</p>
+    		<ion-option-button class="button-assertive button-info" ng-click="apagar(usuario)">Apagar</ion-option-button>
     	</ion-item>
     </ion-list>
 

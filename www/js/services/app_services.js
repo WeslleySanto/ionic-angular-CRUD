@@ -28,6 +28,16 @@
         headers : { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
       });
     };
+
+    //DELETE
+    this.delData = function(dados){
+      return $http({
+        method: "POST",
+        url: Config.getUrl + "apiDeleta.php",
+        data: dados,
+        headers : { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
+      });
+    };
     
   });
 })();

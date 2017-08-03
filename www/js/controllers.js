@@ -13,6 +13,7 @@ angular.module('starter.controllers', [])
   $scope.perfil = 'Perfil';
   $scope.usuarios = 'Usuários';
   $scope.sair = 'Sair';
+  $scope.myswipe = true;
 
   $scope.usuarios_lista = [];
 
@@ -66,6 +67,23 @@ $scope.perfilUsuario = function(id){
   });
 
   $location.path('app/perfil');
+};
+
+//Apagar dados
+$scope.apagar = function(usuario){
+
+  Data.delData(usuario.id)
+  .success(function(data){
+    var deletar = confirm("Deseja realmente deletar esse usuário?");
+
+    if(deletar){
+      alert("Usuário deletado com sucesso!");
+      getData();
+    }
+    
+  }).error(function(data){
+    alert("Problema ao deletar Usuário!");
+  });
 };
 
 });
