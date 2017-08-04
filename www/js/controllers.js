@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, Data, $ionicModal, $location) {
+.controller('AppCtrl', function($scope, Data, $ionicModal, $location, $ionicScrollDelegate) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -14,6 +14,29 @@ angular.module('starter.controllers', [])
   $scope.usuarios = 'Usuários';
   $scope.sair = 'Sair';
   $scope.myswipe = true;
+  $scope.paginacao = true;
+  
+
+  $scope.carregarMais = function(){
+    var params = {
+        counter: $scope.usuarios_lista.length,
+         token: '1f3d2gs3f2fg3as2fdg3re2t1we46er45'
+    };
+
+    Data.getData(params).success(function(data){
+      if(data.length != 0){
+          angular.forEach(data, function(result){
+            $scope.usuarios_lista.push(result);
+          });
+          $scope.paginacao = true;
+      }else{
+          $scope.paginacao = false;
+      }
+
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+
+    });
+  }
 
   $scope.usuarios_lista = [];
 
@@ -46,7 +69,7 @@ var fecharCadastro = $scope.fechaCadastro = function(){
   $scope.modal.hide();
 };
 
-getData();
+//getData();
 
 $scope.cadastroUsuario = function(usuario){
   Data.setData(usuario)
@@ -79,6 +102,8 @@ $scope.apagar = function(usuario){
     if(deletar){
       alert("Usuário deletado com sucesso!");
       getData();
+      $ionicScrollDelegate.scrollBottom();
+      $ionicScrollDelegate.scrollTop();
     }
     
   }).error(function(data){

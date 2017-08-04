@@ -1,8 +1,9 @@
 <ion-view view-title="{{usuarios}}">
+    <div class="button-circle back-assertive" ng-click="abreCadastro()">
+		<button class="button button-icon button-clear icon ion-edit button-light"></button>
+	</div>
   <ion-content>
-    <div class="btn-add" ng-click="abreCadastro()">
-    	<button class="button button-icon icon button-clear ion-android-person-add button-light  "></button>
-    </div>
+
 
     <ion-list can-swipe="myswipe" ng-repeat="usuario in usuarios_lista">
     	<ion-item ng-click="perfilUsuario(usuario.id)">
@@ -11,6 +12,12 @@
     		<ion-option-button class="button-assertive button-info" ng-click="apagar(usuario)">Apagar</ion-option-button>
     	</ion-item>
     </ion-list>
+
+    <ion-infinite-scroll 
+    		ng-show="paginacao" 
+    		on-infinite="carregarMais()" 
+    		distance="40%">
+    </ion-infinite-scroll>
 
   </ion-content>
 </ion-view>
