@@ -3,8 +3,8 @@
 
   angular.module("starter").value("Config", {
 
-    //getUrl: "http://weslleyesanto.com.br/api/ionicAngularCRUD/"
-    getUrl: "http://localhost/apiIonicAngularCRUD/"
+    getUrl: "http://api.weslleyesanto.com.br/ionicAngularCRUD/"
+
   });
 
   angular.module("starter").service("Data", function($http, Config){
