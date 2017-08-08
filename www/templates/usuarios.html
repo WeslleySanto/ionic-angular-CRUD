@@ -2,10 +2,9 @@
     <div class="button-circle back-assertive" ng-click="abreCadastro()">
 		<button class="button button-icon button-clear icon ion-edit button-light"></button>
 	</div>
+
   <ion-content>
-
-
-    <ion-list can-swipe="myswipe" ng-repeat="usuario in usuarios_lista">
+    <ion-list can-swipe="myswipe" ng-repeat="usuario in usuarios_lista | orderBy: '-data'">
     	<ion-item ng-click="perfilUsuario(usuario.id)">
     		<h1 class="positive">{{usuario.nome}}</h1>
     		<p>{{usuario.email}}</p>
@@ -16,8 +15,7 @@
     <ion-infinite-scroll 
     		ng-show="paginacao" 
     		on-infinite="carregarMais()" 
-    		distance="40%">
+    		distance="80%">
     </ion-infinite-scroll>
-
   </ion-content>
 </ion-view>

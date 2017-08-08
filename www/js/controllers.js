@@ -16,7 +16,6 @@ angular.module('starter.controllers', [])
   $scope.myswipe = true;
   $scope.paginacao = true;
   
-
   $scope.carregarMais = function(){
     var params = {
         counter: $scope.usuarios_lista.length,
@@ -42,7 +41,7 @@ angular.module('starter.controllers', [])
 
   var getData = function(){
    var params = {
-    counter: $scope.usuarios_lista.length,
+    counter: 0,
     token: '1f3d2gs3f2fg3as2fdg3re2t1we46er45'
   };
 
@@ -81,7 +80,7 @@ $scope.cadastroUsuario = function(usuario){
     alert(data)
   });
 
-  console.log(usuario);
+  //console.log(usuario);
 };
 
 $scope.perfilUsuario = function(id){
@@ -102,7 +101,6 @@ $scope.apagar = function(usuario){
     if(deletar){
       alert("Usuário deletado com sucesso!");
       getData();
-      $ionicScrollDelegate.scrollBottom();
       $ionicScrollDelegate.scrollTop();
     }
     

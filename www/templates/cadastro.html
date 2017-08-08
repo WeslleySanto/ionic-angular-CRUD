@@ -19,12 +19,7 @@
          <input type="email" placeholder="E-mail" name="email" ng-model="cadastro.email" ng-required="true">
          <span class="assertive" ng-show="formCadastro.email.$invalid && formCadastro.email.$dirty">Preencha o campo e-mail corretamente.</span>
        </label>
-
-       <label class="item item-input item-floating-label">
-         <span class="input-label">Senha</span>
-         <input type="password" placeholder="Senha" name="senha" ng-model="cadastro.senha" ng-required="true">
-         <span class="assertive" ng-show="formCadastro.senha.$invalid && formCadastro.senha.$dirty">Preencha o campo senha.</span>
-       </label>
+       
      </div>
    </form>
    <button class="button button-full button-positive" ng-disabled="formCadastro.$invalid" ng-click="cadastroUsuario(cadastro)">Salvar</button>
